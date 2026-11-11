@@ -1,0 +1,173 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Name | Python developer for scraping, bots and automation</title>
+  <meta name="description" content="Python developer for web scraping, Telegram bots, Django backends and Linux automation. Send me your task and get an estimate.">
+  <meta name="theme-color" content="#12303f">
+
+  <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Public+Sans:wght@400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- TODO: replace "Your Name" with your name -->
+      <a class="brand" href="#top">
+        <img src="{% static 'img/logo.svg' %}" alt="" width="36" height="36">
+        <span>Your Name</span>
+      </a>
+
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
+      <nav class="nav-links" id="site-nav" aria-label="Main">
+        <a class="nav-link" href="#services">Services</a>
+        <a class="nav-link" href="#process">How it works</a>
+        <a class="btn btn--small" href="#contact">Send a brief</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <h1>I automate the web tasks you repeat every day.</h1>
+          <p class="hero-lead">
+            Python developer for web scraping, Telegram bots, backend and Linux automation.
+            You send the task, I deliver something that runs on its own.
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="#contact">Send a brief</a>
+            <a class="btn btn--ghost" href="#services">See services</a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <img src="{% static 'img/hero-pipeline.svg' %}" width="560" height="420"
+               alt="A website goes into your script and comes out as clean data in a CSV file">
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <h2>What I can build for you</h2>
+          <p>Four kinds of work I do most, each delivered ready to use.</p>
+        </div>
+
+        <ul class="services">
+          <li class="service">
+            <h3>Web scraping</h3>
+            <p class="service-desc">Structured data from public sites, including pages that need a real browser to load. Delivered as CSV, JSON or straight into your database.</p>
+            <p class="service-tools">Playwright, BeautifulSoup</p>
+          </li>
+          <li class="service">
+            <h3>Telegram bots</h3>
+            <p class="service-desc">Bots that take orders, handle bookings, send notifications and accept payments, built to run around the clock.</p>
+            <p class="service-tools">aiogram, SQLAlchemy</p>
+          </li>
+          <li class="service">
+            <h3>Django backends</h3>
+            <p class="service-desc">Landing pages, admin panels and APIs with a database behind them, deployed and ready for real visitors.</p>
+            <p class="service-tools">Django, SQL databases</p>
+          </li>
+          <li class="service">
+            <h3>Linux automation</h3>
+            <p class="service-desc">Scripts, scheduled jobs and server setup, so recurring tasks run on their own and you stop doing them by hand.</p>
+            <p class="service-tools">Linux, cron, nginx</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Process -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-head">
+          <h2>How it works</h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <h3>Send a brief</h3>
+            <p>Describe the task and the result you need. I reply with questions and an estimate.</p>
+          </li>
+          <li class="step">
+            <h3>I build it</h3>
+            <p>I share progress as it comes together, so you can correct course early.</p>
+          </li>
+          <li class="step">
+            <h3>You get a working result</h3>
+            <p>Code, setup notes and deployment to your server, so it keeps running without me.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section--dark" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <h2>Send me your task</h2>
+          <p>Describe what you want automated or built. I will reply with questions or an estimate.</p>
+        </div>
+
+        <div>
+          {# Messages appear here after a redirect, when the view calls messages.success(request, "...") #}
+          {% if messages %}
+            {% for message in messages %}
+              <p class="notice notice--{{ message.tags }}" role="status">{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+
+          {# Field names (name, contact, message) match the Lead model idea from before #}
+          <form class="contact-form" method="post" action="">
+            {% csrf_token %}
+
+            <div class="field">
+              <label for="id_name">Your name</label>
+              <input id="id_name" name="name" type="text" autocomplete="name" maxlength="100" required>
+            </div>
+
+            <div class="field">
+              <label for="id_contact">Email or Telegram</label>
+              <input id="id_contact" name="contact" type="text" autocomplete="email" maxlength="150"
+                     placeholder="you@example.com or @username" required>
+            </div>
+
+            <div class="field">
+              <label for="id_message">What do you need?</label>
+              <textarea id="id_message" name="message" maxlength="2000"
+                        placeholder="Example: collect prices from three shops every morning and save them to a spreadsheet." required></textarea>
+            </div>
+
+            <button class="btn" type="submit">Send message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span data-year>2026</span> Your Name</p>
+      {# TODO: put your real Upwork profile URL here #}
+      <a href="#" rel="noopener">Upwork profile</a>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}" defer></script>
+</body>
+</html>
